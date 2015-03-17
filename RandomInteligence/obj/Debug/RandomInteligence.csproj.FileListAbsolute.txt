@@ -1,0 +1,5 @@
+p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\bin\Debug\RandomInteligence.dll
+p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\bin\Debug\RandomInteligence.pdb
+p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.csprojResolveAssemblyReference.cache
+p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.dll
+p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.pdb
