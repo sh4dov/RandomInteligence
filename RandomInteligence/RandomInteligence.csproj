@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C5">
+      <HintPath>..\packages\C5.2.3.0.1\lib\net40\C5.dll</HintPath>
+    </Reference>
     <Reference Include="Cerberus">
       <HintPath>..\packages\Cerberus.1.0.4886.20685\lib\portable-net40+sl40\Cerberus.dll</HintPath>
     </Reference>
@@ -45,8 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AStarSearch.cs" />
+    <Compile Include="Data\PointLocation.cs" />
+    <Compile Include="Misc\IHeuristic.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="CommandRandomizer.cs" />
+    <Compile Include="Data\ILocation.cs" />
+    <Compile Include="Misc\IWeightedGraph.cs" />
+    <Compile Include="Misc\PointLocationComparer.cs" />
+    <Compile Include="Misc\PointLocationHeuristic.cs" />
+    <Compile Include="Misc\PriorityComparer.cs" />
+    <Compile Include="Data\PriorityLocation.cs" />
+    <Compile Include="Misc\SquareGridWeightedGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
