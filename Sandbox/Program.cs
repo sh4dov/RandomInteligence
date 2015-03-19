@@ -11,11 +11,11 @@ namespace Sandbox
         {
             var world = new[,]
             {
-                {1, 1, 1, 1, 5, 1, 1, 1, 1, 1},
+                {1, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {5, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -36,19 +36,25 @@ namespace Sandbox
             search.Search();
 
             Console.Clear();
-            foreach (var location in search.costSoFar)
-            {
-                Console.SetCursorPosition(location.Key.X * 3, location.Key.Y * 3);
-                Console.Write(" " + location.Value);
-            }
+            //foreach (var location in search.costSoFar)
+            //{
+            //    Console.SetCursorPosition(location.Key.X * 3, location.Key.Y * 3);
+            //    Console.Write(" " + location.Value);
+            //}
 
-            var l = goal;
-            do
+            var l = search.costSoFar.ContainsKey(goal) ? goal : start;
+            while (!equalityComparer.Equals(l, start))
             {
                 Console.SetCursorPosition(l.X, l.Y);
-                Console.Write("X");
+                Console.Write("*");
                 l = search.cameFrom[l];
-            } while (!equalityComparer.Equals(l, start));
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(start.X, start.Y);
+            Console.Write("S");
+            Console.SetCursorPosition(goal.X, goal.Y);
+            Console.Write("X");
+            Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.ReadLine();
         }

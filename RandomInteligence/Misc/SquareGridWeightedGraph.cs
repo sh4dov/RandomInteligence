@@ -10,6 +10,19 @@ namespace RandomInteligence.Misc
         private readonly int lastX;
         private readonly int lastY;
 
+        private readonly int[,] directions =
+        {
+            {1, 0},  // right
+            {0, 1},  // down
+            {-1, 0}, // left
+            {0, -1}, // up
+
+            //{1, -1}, // right up
+            //{1, 1}, // right down
+            //{-1, 1}, // left down
+            //{-1, -1} // left up
+        };
+
         public SquareGridWeightedGraph(int[,] square)
         {
             Guard.ArgumentIsNotNull(() => square);
@@ -21,49 +34,21 @@ namespace RandomInteligence.Misc
 
         public int Cost(PointLocation location)
         {
-            return square[location.X, location.X];
+            return square[location.Y, location.X];
         }
 
         public IEnumerable<PointLocation> Neighbors(PointLocation location)
         {
-            if (location.X < lastX)
+            for (var i = 0; i < directions.GetLength(0); i++)
             {
-                yield return new PointLocation { X = location.X + 1, Y = location.Y };
-            }
+                var point = new PointLocation(directions[i, 0] + location.X, directions[i, 1] + location.Y);
 
-            if (location.X < lastX && location.Y < lastY)
-            {
-                yield return new PointLocation { X = location.X + 1, Y = location.Y + 1 };
-            }
+                if (point.X < 0 || point.X > lastX || point.Y < 0 || point.Y > lastY || Cost(point) <= 0)
+                {
+                    continue;
+                }
 
-            if (location.Y < lastY)
-            {
-                yield return new PointLocation { X = location.X, Y = location.Y + 1 };
-            }
-
-            if (location.X > 0 && location.Y < lastY)
-            {
-                yield return new PointLocation { X = location.X - 1, Y = location.Y + 1 };
-            }
-
-            if (location.X > 0)
-            {
-                yield return new PointLocation { X = location.X - 1, Y = location.Y };
-            }
-
-            if (location.X > 0 && location.Y > 0)
-            {
-                yield return new PointLocation { X = location.X - 1, Y = location.Y - 1 };
-            }
-
-            if (location.Y > 0)
-            {
-                yield return new PointLocation { X = location.X, Y = location.Y - 1 };
-            }
-
-            if (location.X < lastX && location.Y > 0)
-            {
-                yield return new PointLocation { X = location.X + 1, Y = location.Y - 1 };
+                yield return point;
             }
         }
     }
