@@ -14,8 +14,8 @@ namespace RandomInteligence.Algorithms
         private readonly T goal;
         private readonly IHeuristic<T> heuristic;
         private readonly IEqualityComparer<T> comparer;
-        public readonly Dictionary<T, T> cameFrom = new Dictionary<T, T>();
-        public readonly Dictionary<T, int> costSoFar = new Dictionary<T, int>();
+        private readonly Dictionary<T, T> cameFrom = new Dictionary<T, T>();
+        private readonly Dictionary<T, int> costSoFar = new Dictionary<T, int>();
 
         public AStarSearch(IWeightedGraph<T> graph, T start, T goal, IHeuristic<T> heuristic, IEqualityComparer<T> comparer = null)
         {
@@ -31,7 +31,7 @@ namespace RandomInteligence.Algorithms
             this.comparer = comparer ?? System.Collections.Generic.EqualityComparer<T>.Default;
         }
 
-        public void Search()
+        public List<T> Search()
         {
             var frontier = new IntervalHeap<PriorityItem<T>>(new PriorityComparer<T>());
             frontier.Add(new PriorityItem<T>(start, 0));
@@ -59,6 +59,26 @@ namespace RandomInteligence.Algorithms
                     }
                 }
             }
+
+            return GetPath();
+        }
+
+        private List<T> GetPath()
+        {
+            var result = new List<T>();
+            if (!cameFrom.ContainsKey(goal))
+            {
+                return result;
+            }
+
+            var current = goal;
+            while (!comparer.Equals(current, start))
+            {
+                result.Insert(0, current);
+                current = cameFrom[current];
+            }
+
+            return result;
         }
     }
 }

@@ -9,18 +9,25 @@ namespace Sandbox
     {
         private static void Main(string[] args)
         {
+            AStarTest();
+        }
+
+        private static void AStarTest()
+        {
+            // x > 0 - dificulty (moving throught 2 is two times more expensive than moving by 1 etc.)
+            // x <= 0 - cannot pass (wall)
             var world = new[,]
             {
-                {1, 0, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+                {1, 3, 1, 1, 0, 1, 0, 1, 1, 1},
+                {2, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 1, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+                {1, 1, 1, 1, 1, 1, 0, 1, 0, 1}
             };
 
             var start = new PointLocation { X = 0, Y = 0 };
@@ -33,30 +40,23 @@ namespace Sandbox
                 new PointLocationHeuristic(),
                 equalityComparer);
 
-            search.Search();
+            var path = search.Search();
 
             Console.Clear();
-            //foreach (var location in search.costSoFar)
-            //{
-            //    Console.SetCursorPosition(location.Key.X * 3, location.Key.Y * 3);
-            //    Console.Write(" " + location.Value);
-            //}
-
-            var l = search.costSoFar.ContainsKey(goal) ? goal : start;
-            while (!equalityComparer.Equals(l, start))
+            foreach (var l in path)
             {
                 Console.SetCursorPosition(l.X, l.Y);
                 Console.Write("*");
-                l = search.cameFrom[l];
             }
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(start.X, start.Y);
             Console.Write("S");
             Console.SetCursorPosition(goal.X, goal.Y);
             Console.Write("X");
             Console.ForegroundColor = ConsoleColor.Gray;
-
-            Console.ReadLine();
+            Console.SetCursorPosition(0, world.GetLength(0) + 1);
+            Console.WriteLine("Number of used points: {0}", path.Count);
         }
     }
 }
