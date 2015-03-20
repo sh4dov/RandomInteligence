@@ -6,3 +6,6 @@ p:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\obj\Debug\Rando
 P:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\bin\Debug\Cerberus.dll
 P:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\bin\Debug\ObjectSupporter.dll
 P:\Programowanie\VS\Projects\RandomInteligence\RandomInteligence\bin\Debug\C5.dll
+C:\Users\z8qar\Documents\Visual Studio 2013\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.csprojResolveAssemblyReference.cache
+C:\Users\z8qar\Documents\Visual Studio 2013\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.dll
+C:\Users\z8qar\Documents\Visual Studio 2013\Projects\RandomInteligence\RandomInteligence\obj\Debug\RandomInteligence.pdb
