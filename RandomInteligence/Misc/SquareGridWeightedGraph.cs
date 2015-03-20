@@ -17,10 +17,10 @@ namespace RandomInteligence.Misc
             {-1, 0}, // left
             {0, -1}, // up
 
-            //{1, -1}, // right up
-            //{1, 1}, // right down
-            //{-1, 1}, // left down
-            //{-1, -1} // left up
+            {1, -1}, // right up
+            {1, 1}, // right down
+            {-1, 1}, // left down
+            {-1, -1} // left up
         };
 
         public SquareGridWeightedGraph(int[,] square)
